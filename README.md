@@ -1,8 +1,8 @@
-# students-accomodation
+# HiveHaven
 
 ## Description
 
-This is a web application that allows students to find accomodation near their universities. It also allows landlords to post their accomodation for students to find.
+This is a web application that allows students to find accommodation near their universities. It also allows landlords to post their accommodation for students to find.
 
 ## Technologies Used
 
@@ -12,7 +12,7 @@ This is a web application that allows students to find accomodation near their u
 - Node.js
 - Express.js
 - MySQL
-- Sequelize
+- Tensorflow
 
 ## Access the application
 
