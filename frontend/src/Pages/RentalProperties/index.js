@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from '../../axiosConfig';
 import Link from 'react-router-dom';
+import "./styles.css";
 
 function RentalProperties() {
 

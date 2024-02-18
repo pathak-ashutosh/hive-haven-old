@@ -1,24 +1,18 @@
-.single-property-page {
-    padding: 20px;
-  }
-  
-  .property-details {
-    margin-top: 20px;
-  }
-  
-  .property-details h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .property-details p {
-    margin-bottom: 5px;
-  }
-  
-  .property-details img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    margin-bottom: 20px;
-  }
-  
+.property-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.property-details {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.property-details h1 {
+  color: #333;
+}
+
+.property-details p {
+  color: #666;
+}

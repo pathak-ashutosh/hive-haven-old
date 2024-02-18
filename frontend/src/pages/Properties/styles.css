@@ -1,0 +1,25 @@
+.property-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .property {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .property h2 {
+    color: #333;
+  }
+  
+  .property p {
+    color: #666;
+  }
+  
+  .property a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
