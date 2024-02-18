@@ -10,7 +10,7 @@ function Main() {
         <p>Find the best accommodation for your needs</p>
       </header>
       <div>
-        <Link to="/rentalproperty">
+        <Link to="/properties">
           <button>Accommodation</button>
         </Link>
         <Link to="/">
