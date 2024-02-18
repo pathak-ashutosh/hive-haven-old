@@ -13,7 +13,8 @@ This is a web application that allows students to find accommodation near their 
 - Express.js
 - MySQL
 - Tensorflow
+- Figma
 
 ## Access the application
 
-The application is hosted on Heroku. You can access it [here](https://students-accomodation-adcb6c50b3ba.herokuapp.com/).
+The application is hosted on Heroku. You can access it only on localhost for now.
