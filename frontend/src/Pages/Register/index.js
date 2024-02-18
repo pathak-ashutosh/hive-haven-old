@@ -45,10 +45,14 @@ const Register = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            onBlur={(e) => {
+              if (!e.target.value.endsWith('.edu')) {
+                alert('Only .edu email addresses are allowed.');
+                setEmail('');
+              }
+            }}
             required
           />
-        </div>
-        <div className="form-group">
           <label>Password:</label>
           <input
             type="password"

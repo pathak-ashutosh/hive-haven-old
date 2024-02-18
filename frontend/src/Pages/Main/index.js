@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Main() {
   return (
-    <div className="main-container"> {/* Apply CSS class for Main container */}
+    <div className="main-container"> 
       <header>
         <h1>One stop Accommodation solution for all students</h1>
         <p>Find the best accommodation for your needs</p>

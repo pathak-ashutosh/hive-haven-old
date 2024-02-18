@@ -5,14 +5,12 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   background-color: #fff;
-}
-
-.register-container h2 {
-  text-align: center;
+  align-items: center;
 }
 
 .form-group {
   margin-bottom: 20px;
+  width: 100%;
 }
 
 label {
@@ -25,6 +23,7 @@ input {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  box-sizing: border-box;
 }
 
 button {
@@ -40,4 +39,3 @@ button {
 button:hover {
   background-color: #0056b3;
 }
-  
