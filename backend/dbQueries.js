@@ -22,6 +22,11 @@ export async function get_properties() {
   return results;
 }
 
+export async function get_property_by_id(id) {
+  const [results] = await pool.query(`SELECT * FROM properties where id = ?`, [id]);
+  return results;
+}
+
 export async function get_users_by_email(email) {
   const [results] = await pool.query(`SELECT * FROM users where email = ?`, [email]);
   return results;

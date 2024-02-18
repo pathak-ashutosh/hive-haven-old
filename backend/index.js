@@ -11,6 +11,7 @@ import {
   get_users_by_email_password,
   insert_user,
   get_properties,
+  get_property_by_id,
 } from "./dbQueries.js";
 
 // Initialize Express app
@@ -99,6 +100,21 @@ app.get("/api/properties", (req, res) => {
     })
     .catch((err) => {
       console.error("Error getting properties:", err);
+      res.status(500).json("Internal Server Error");
+    });
+});
+
+// Property details
+app.get("/api/properties/:id", (req, res) => {
+  get_property_by_id(req.params.id)
+    .then((results) => {
+      if (results.length === 0) {
+        return res.status(404).json("Property not found.");
+      }
+      res.status(200).json(results[0]);
+    })
+    .catch((err) => {
+      console.error("Error getting property:", err);
       res.status(500).json("Internal Server Error");
     });
 });

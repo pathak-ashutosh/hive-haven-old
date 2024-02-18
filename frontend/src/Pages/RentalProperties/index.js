@@ -3,20 +3,19 @@ import axios from '../../axiosConfig';
 import Link from 'react-router-dom';
 
 function RentalProperties() {
-    const [properties, setProperties] = useState([]);
-    
-    useEffect(() => {
-      fetchProperties();
-    }, []);
 
-    const fetchProperties = async () => {
-        try {
-            const response = await axios.get('/properties');
-            setProperties(response.data);
-        } catch (error) {
-            console.error('Error getting properties:', error);
-        }
-    };
+  const [properties, setProperties] = useState([]);
+
+  useEffect(() => {
+    axios.get('/properties')
+      .then((response) => {
+        setProperties(response.data);
+      })
+      .catch((error) => {
+        console.error('Error getting properties:', error);
+      });
+  }
+  , []); // Add an empty dependency array here
 
   return (
     <div>
