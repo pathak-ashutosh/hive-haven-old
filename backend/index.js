@@ -1,16 +1,27 @@
 // Import necessary packages
-const express = require('express');
-const bodyParser = require('body-parser');
-const multer = require('multer');
-const mysql = require('mysql2');
-const jwt = require('jsonwebtoken');
+import express from 'express';
+import bodyParser from 'body-parser';
+import multer from 'multer';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import mysql from 'mysql2';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import cors from 'cors';
 
 // Initialize Express app
 const app = express();
-const port = process.env.PORT || 3000;
-
-// Configure body parser middleware
+app.use(express.json());
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy( {policy: 'cross-origin'} ));
+app.use(morgan('common'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
+dotenv.config();
+app.use(bodyParser.json());
+
+const port = process.env.SERVER_PORT || 3000;
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
@@ -23,23 +34,15 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// Initialize MySQL connection
-const db = mysql.createConnection({
-  host: process.env.DB_HOST || 'localhost',
-  port: process.env.DB_PORT || 3306,
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'admin',
-  database: process.env.DB_NAME || 'mydb'
-});
+// Create database connection pool
+const pool = mysql.createPool({
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
+}).promise();
 
-// Connect to MySQL
-db.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err);
-    return;
-  }
-  console.log('Connected to MySQL');
-});
 
 // Middleware for user authentication
 const authenticateUser = (req, res, next) => {
@@ -51,7 +54,7 @@ const authenticateUser = (req, res, next) => {
   }
   try {
     // Verify token
-    const decoded = jwt.verify(token, 'your_secret_key');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded; // Add user information to request object
     next(); // Call next middleware
   } catch (error) {
@@ -76,7 +79,7 @@ app.post('/register', (req, res) => {
     return res.status(400).send('Email and password are required.');
   }
   // Check if user already exists
-  db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+  pool.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
     if (err) {
       console.error('Error checking user:', err);
       return res.status(500).send('Internal Server Error');
@@ -85,7 +88,7 @@ app.post('/register', (req, res) => {
       return res.status(400).send('Email is already registered.');
     }
     // Insert new user into the database
-    db.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, password], (err) => {
+    pool.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, password], (err) => {
       if (err) {
         console.error('Error registering user:', err);
         return res.status(500).send('Internal Server Error');
@@ -104,7 +107,7 @@ app.post('/login', (req, res) => {
     return res.status(400).send('Email and password are required.');
   }
   // Check if user exists and credentials match
-  db.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, results) => {
+  pool.query('SELECT * FROM users WHERE email = ? AND password = ?', [email, password], (err, results) => {
     if (err) {
       console.error('Error checking user:', err);
       return res.status(500).send('Internal Server Error');
@@ -123,7 +126,13 @@ app.post('/login', (req, res) => {
 
 // Property listing
 app.get('/properties', authenticateUser, (req, res) => {
-  // Perform property listing logic here (e.g., fetch properties from database)
+  pool.query('SELECT * FROM properties', (err, results) => {
+    if (err) {
+      console.error('Error fetching properties:', err);
+      return res.status(500).send('Internal Server Error');
+    }
+    res.status(200).json(results);
+  });
 });
 
 // Upload utility bill
