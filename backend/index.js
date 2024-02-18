@@ -72,11 +72,11 @@ const errorHandler = (err, req, res, next) => {
 // Routes
 
 // User registration
-app.post('/register', (req, res) => {
-  const { email, password } = req.body;
+app.post('/api/register', (req, res) => {
+  const { name, email, password } = req.body;
   // Check if email and password are provided
-  if (!email || !password) {
-    return res.status(400).send('Email and password are required.');
+  if (!name || !email || !password) {
+    return res.status(400).send('Name, Email and password are required.');
   }
   // Check if user already exists
   pool.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
@@ -88,7 +88,7 @@ app.post('/register', (req, res) => {
       return res.status(400).send('Email is already registered.');
     }
     // Insert new user into the database
-    pool.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, password], (err) => {
+    pool.query('INSERT INTO users (name, email, password) VALUES (?, ?, ?)', [name, email, password], (err) => {
       if (err) {
         console.error('Error registering user:', err);
         return res.status(500).send('Internal Server Error');
@@ -100,7 +100,7 @@ app.post('/register', (req, res) => {
 
 
 // User login
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
   const { email, password } = req.body;
   // Check if email and password are provided
   if (!email || !password) {
@@ -125,7 +125,7 @@ app.post('/login', (req, res) => {
 
 
 // Property listing
-app.get('/properties', authenticateUser, (req, res) => {
+app.get('/api/properties', authenticateUser, (req, res) => {
   pool.query('SELECT * FROM properties', (err, results) => {
     if (err) {
       console.error('Error fetching properties:', err);
@@ -136,7 +136,7 @@ app.get('/properties', authenticateUser, (req, res) => {
 });
 
 // Upload utility bill
-app.post('/upload-bill', authenticateUser, upload.single('bill'), (req, res) => {
+app.post('/api/upload-bill', authenticateUser, upload.single('bill'), (req, res) => {
   if (!req.file) {
     res.status(400).send('No file uploaded.');
   } else {
