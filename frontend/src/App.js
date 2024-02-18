@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer.js';
 import Register from './Pages/Register/index.js';
 import Login from './Pages/Login/index.js';
 import Main from './Pages/Main/index.js';
+import RentalProperty from './Pages/RentalProperty/index.js';
 
 function App() {
   return (
@@ -16,10 +17,8 @@ function App() {
           <Route exact path="/" element={<Main/>} /> 
           <Route path="/register" element={<Register/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/rentalproperty" element={<RentalProperty/>} />
         </Routes>
-        <div className="content">
-          {/* Add your main content here */}
-        </div>
         <Footer />
       </div>
     </Router>
