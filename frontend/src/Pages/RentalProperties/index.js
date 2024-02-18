@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function RentalProperty() {
+function RentalProperties() {
     const [properties, setProperties] = useState([]);
     
     useEffect(() => {
@@ -32,4 +32,4 @@ function RentalProperty() {
   );
 }
 
-export default RentalProperty;
+export default RentalProperties;
