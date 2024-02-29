@@ -13,6 +13,7 @@ import {
   get_properties,
   get_property_by_id,
 } from "./dbQueries.js";
+import Model from "./model.js";
 
 // Initialize Express app
 const app = express();
@@ -117,6 +118,32 @@ app.get("/api/properties/:id", (req, res) => {
       console.error("Error getting property:", err);
       res.status(500).json("Internal Server Error");
     });
+});
+
+app.post('/api/predict', upload.single('image'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ error: 'No image uploaded.' });
+  }
+
+  // Assuming the image is in the request file field
+  const imageBuffer = req.file.buffer; // or the appropriate field for your setup
+  // Load or define your database images
+  const databaseImages = [
+    {
+      label: 'img1',
+      image: 'uploads/image1.jpeg'
+    },
+    {
+      label: 'img2',
+      image: 'uploads/image2.jpeg'
+    }
+  ];
+
+  // Make a prediction
+  const isMatch = await model.predict(imageBuffer, databaseImages);
+
+  // Send the prediction result
+  res.status(200).json({ match: isMatch });
 });
 
 // Upload utility bill
