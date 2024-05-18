@@ -140,7 +140,7 @@ app.post('/api/predict', upload.single('image'), async (req, res) => {
   ];
 
   // Make a prediction
-  const isMatch = await model.predict(imageBuffer, databaseImages);
+  const isMatch = await Model.predict(imageBuffer, databaseImages);
 
   // Send the prediction result
   res.status(200).json({ match: isMatch });
