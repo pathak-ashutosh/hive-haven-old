@@ -22,11 +22,11 @@ const Home = () => {
       <section className="pb-12 sm:pb-24">
         <Hero />
       </section>
-      <section className="pb-12 sm:pb-24">
+      {/* <section className="pb-12 sm:pb-24">
         <FeaturedProperties />
       </section>
       <section className="pb-12 sm:pb-24">How It Works</section>
-      <section className="pb-12 sm:pb-24">Testimonials</section>
+      <section className="pb-12 sm:pb-24">Testimonials</section> */}
     </div>
   );
 };

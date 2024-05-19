@@ -24,7 +24,7 @@ const Nav = () => {
 
   return (
     <header
-      className={`px-12 py-4 fixed z-20 w-full transition-shadow duration-300 bg-white ${
+      className={`px-12 max-md:px-8 py-4 fixed z-20 w-full transition-shadow duration-300 bg-white ${
         isScrolled ? "shadow-md" : ""
       }`}
     >
