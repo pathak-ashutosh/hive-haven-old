@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { IoMenu, IoClose } from "react-icons/io5";
 
 const Nav = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +22,16 @@ const Nav = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <header
@@ -37,20 +50,25 @@ const Nav = () => {
           </Link>
 
           {/* Navigation Links */}
-          <ul className="flex flex-col sm:flex-row sm:gap-8 gap-4 max-md:hidden items-center text-md">
+          <ul
+            ref={menuRef}
+            className={`flex flex-col sm:flex-row sm:gap-8 gap-4 max-md:hidden items-center text-md ${
+              isMenuOpen ? "block" : "hidden"
+            } md:flex`}
+          >
             <li>
-              <Link to="/about" className="px-4">About</Link>
+              <Link to="/about" className="px-4" onClick={() => setIsMenuOpen(false)}>About</Link>
             </li>
             <li>
-              <Link to="/contact" className="px-4">Contact</Link>
+              <Link to="/contact" className="px-4" onClick={() => setIsMenuOpen(false)}>Contact</Link>
             </li>
             <li>
-              <Link to="/signup">
+              <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
                 <PrimaryButton label="Sign Up" Icon={null} />
               </Link>
             </li>
             <li>
-              <Link to="/login">
+              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                 <SecondaryButton label="Log In" Icon={null} />
               </Link>
             </li>
@@ -58,21 +76,37 @@ const Nav = () => {
         </div>
 
         {/* Hamburger Menu */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6 hidden max-md:block"
+        <button
+          className="w-6 h-6 hidden max-md:block cursor-pointer"
+          onClick={toggleMenu}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-          />
-        </svg>
+          {isMenuOpen ? <IoClose size={24} /> : <IoMenu size={24} />}
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <ul className="pt-5 flex flex-col gap-4 items-center text-md md:hidden">
+          <li>
+            <Link to="/about" className="p-4" onClick={() => setIsMenuOpen(false)}>About</Link>
+          </li>
+          <li>
+            <Link to="/contact" className="p-4" onClick={() => setIsMenuOpen(false)}>Contact</Link>
+          </li>
+          <div className="flex gap-3">
+            <li>
+              <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                <PrimaryButton label="Sign Up" Icon={null} />
+              </Link>
+            </li>
+            <li>
+              <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                <SecondaryButton label="Log In" Icon={null} />
+              </Link>
+            </li>
+          </div>
+        </ul>
+      )}
     </header>
   );
 };
