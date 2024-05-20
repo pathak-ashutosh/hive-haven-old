@@ -8,6 +8,7 @@ const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
+  // To add border shadow on scroll
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -33,6 +34,15 @@ const Nav = () => {
     }
   };
 
+  // Close mobile menu when clicking outside of menu
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
   return (
     <header
       className={`px-12 max-md:px-8 py-4 fixed z-20 w-full transition-shadow duration-300 bg-white ${
@@ -42,7 +52,7 @@ const Nav = () => {
       <nav className="flex justify-between items-center">
         <div className="flex flex-col justify-between md:flex-row w-full">
           {/* Logo */}
-          <Link to="/" className="flex flex-col md:flex-row gap-4 items-center">
+          <Link to="/" className="flex flex-col md:flex-row gap-4 max-md:pl-6 items-center">
             {/* <img src={headerLogo} alt="Hive Haven Logo" width={30} height={30} /> */}
             <p className="block text-xl font-bold hover:drop-shadow-sm">
               <span className="text-yellow-500">hive</span>Haven
