@@ -1,6 +1,4 @@
 import { Link } from "react-router-dom";
-import { headerLogo } from "../assets/images";
-import { hamburger } from "../assets/icons";
 import { PrimaryButton, SecondaryButton } from "./Buttons";
 import { useState, useEffect } from "react";
 
@@ -30,35 +28,36 @@ const Nav = () => {
     >
       <nav className="flex justify-between items-center">
         <div className="flex flex-col justify-between md:flex-row w-full">
+          {/* Logo */}
           <Link to="/" className="flex flex-col md:flex-row gap-4 items-center">
             {/* <img src={headerLogo} alt="Hive Haven Logo" width={30} height={30} /> */}
             <p className="block text-xl font-bold hover:drop-shadow-sm">
               <span className="text-yellow-500">hive</span>Haven
             </p>
           </Link>
-          <ul className="flex flex-col sm:flex-row gap-8 max-md:hidden items-center text-md">
-            <li className="nav_item">
-              <Link to="/about" className="nav_link">
-                About
-              </Link>
+
+          {/* Navigation Links */}
+          <ul className="flex flex-col sm:flex-row sm:gap-8 gap-4 max-md:hidden items-center text-md">
+            <li>
+              <Link to="/about" className="px-4">About</Link>
             </li>
-            <li className="nav_item">
-              <Link to="/contact" className="nav_link">
-                Contact
-              </Link>
+            <li>
+              <Link to="/contact" className="px-4">Contact</Link>
             </li>
-            <li className="nav_item">
-              <Link to="/register" className="nav_link">
+            <li>
+              <Link to="/signup">
                 <PrimaryButton label="Sign Up" Icon={null} />
               </Link>
             </li>
-            <li className="nav_item">
-              <Link to="/login" className="nav_link">
+            <li>
+              <Link to="/login">
                 <SecondaryButton label="Log In" Icon={null} />
               </Link>
             </li>
           </ul>
         </div>
+
+        {/* Hamburger Menu */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

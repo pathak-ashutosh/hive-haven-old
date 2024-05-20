@@ -48,12 +48,14 @@ const errorHandler = (err, req, res, next) => {
 
 // Routes
 
-// User registration
-app.post("/api/register", (req, res) => {
-  const { name, email, password } = req.body;
+// User sign up
+app.post("/api/signup", (req, res) => {
+  const { name, email, password, role } = req.body;
   // Check if email and password are provided
-  if (!name || !email || !password) {
-    return res.status(400).json("Name, Email and password are required.");
+  if (!name || !email || !password || !role) {
+    return res
+      .status(400)
+      .json("Name, Email, Password, and Role are required.");
   }
   // Check if user already exists
   get_users_by_email(email).then((results) => {
@@ -61,7 +63,7 @@ app.post("/api/register", (req, res) => {
       return res.status(409).json("User already exists.");
     }
     // Insert new user into the database
-    insert_user(name, email, password)
+    insert_user(name, email, password, role)
       .then(() => {
         res.status(201).json("User registered successfully.");
       })
@@ -120,9 +122,9 @@ app.get("/api/properties/:id", (req, res) => {
     });
 });
 
-app.post('/api/predict', upload.single('image'), async (req, res) => {
+app.post("/api/predict", upload.single("image"), async (req, res) => {
   if (!req.file) {
-    return res.status(400).json({ error: 'No image uploaded.' });
+    return res.status(400).json({ error: "No image uploaded." });
   }
 
   // Assuming the image is in the request file field
@@ -130,13 +132,13 @@ app.post('/api/predict', upload.single('image'), async (req, res) => {
   // Load or define your database images
   const databaseImages = [
     {
-      label: 'img1',
-      image: 'uploads/image1.jpeg'
+      label: "img1",
+      image: "uploads/image1.jpeg",
     },
     {
-      label: 'img2',
-      image: 'uploads/image2.jpeg'
-    }
+      label: "img2",
+      image: "uploads/image2.jpeg",
+    },
   ];
 
   // Make a prediction

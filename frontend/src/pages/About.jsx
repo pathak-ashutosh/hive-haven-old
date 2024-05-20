@@ -17,3 +17,11 @@
 // -------------------------------------------------
 // | Footer: Links, Social Media, Contact Info       |
 // -------------------------------------------------
+
+const About = () => {
+  return (
+    <div>About</div>
+  )
+}
+
+export default About

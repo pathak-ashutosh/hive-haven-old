@@ -20,3 +20,10 @@
 // | Footer: Links, Social Media, Contact Info       |
 // -------------------------------------------------
 
+const Contact = () => {
+  return (
+    <div>Contact</div>
+  )
+}
+
+export default Contact

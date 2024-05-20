@@ -21,3 +21,12 @@
 // -------------------------------------------------
 // | Footer: Links, Social Media, Contact Info      |
 // -------------------------------------------------
+
+
+const Services = () => {
+  return (
+    <div>Services</div>
+  )
+}
+
+export default Services

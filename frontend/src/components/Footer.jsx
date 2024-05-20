@@ -1,31 +1,14 @@
 import { Link } from "react-router-dom";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { delay, motion, useInView } from "framer-motion";
-import { useRef } from "react";
 
 const Footer = () => {
-  const footerRef = useRef(null);
-  const isInView = useInView(footerRef, { once: true });
-
-  const sectionVariants = (delay) => ({
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "anticipate", delay },
-    },
-  });
 
   return (
-    <footer ref={footerRef} className="bg-gray-800 text-white font-inter p-10">
+    <footer className="bg-gray-800 text-white font-inter p-10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Company Info */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={sectionVariants(0.2)}
-        >
+        <div>
           <h2 className="text-xl font-bold text-yellow-500 mb-4">hiveHaven</h2>
           <p className="mb-4">
             Connecting International Students with Trusted Accommodations Across the US.
@@ -33,14 +16,10 @@ const Footer = () => {
           <p>1234 Street Name, City, State, 12345</p>
           <p>Email: info@company.com</p>
           <p>Phone: (123) 456-7890</p>
-        </motion.div>
+        </div>
 
         {/* Quick Links */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={sectionVariants(0.4)}
-        >
+        <div>
           <h2 className="text-xl font-bold text-yellow-500 mb-4">Quick Links</h2>
           <ul>
             <li className="mb-2">
@@ -56,14 +35,10 @@ const Footer = () => {
               <Link to="/contact" className="hover:underline">Contact</Link>
             </li>
           </ul>
-        </motion.div>
+        </div>
 
         {/* Social Media */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={sectionVariants(0.6)}
-        >
+        <div>
           <h2 className="text-xl font-bold text-yellow-500 mb-4">Follow Us</h2>
           <div className="flex space-x-4">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500">
@@ -79,14 +54,10 @@ const Footer = () => {
               <FaLinkedin size={24} />
             </a>
           </div>
-        </motion.div>
+        </div>
 
         {/* Newsletter Subscription */}
-        <motion.div
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={sectionVariants(0.8)}
-        >
+        <div>
           <h2 className="text-xl font-semibold text-yellow-500 mb-4">Newsletter</h2>
           <p className="mb-4">Subscribe to our newsletter to get the latest updates and offers.</p>
           <form>
@@ -99,7 +70,7 @@ const Footer = () => {
               Subscribe
             </button>
           </form>
-        </motion.div>
+        </div>
       </div>
       <div className="text-center mt-8">
         <p>&copy; {new Date().getFullYear()} hiveHaven. All rights reserved.</p>
