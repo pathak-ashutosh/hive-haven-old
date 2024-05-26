@@ -13,7 +13,7 @@ import {
   get_properties,
   get_property_by_id,
 } from "./dbQueries.js";
-import Model from "./model.js";
+// import Model from "./model.js";
 
 // Initialize Express app
 const app = express();
@@ -142,7 +142,7 @@ app.post("/api/predict", upload.single("image"), async (req, res) => {
   ];
 
   // Make a prediction
-  const isMatch = await Model.predict(imageBuffer, databaseImages);
+  // const isMatch = await Model.predict(imageBuffer, databaseImages);
 
   // Send the prediction result
   res.status(200).json({ match: isMatch });
