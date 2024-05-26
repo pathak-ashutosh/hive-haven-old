@@ -4,7 +4,7 @@ Welcome to HiveHaven, your trusted platform for connecting international student
 
 - [HiveHaven](#hivehaven)
   - [Introduction](#introduction)
-  - [Features (Planned)](#features-planned)
+  - [Features](#features)
   - [Technologies Used](#technologies-used)
   - [Getting Started](#getting-started)
     - [Prerequisites](#prerequisites)
@@ -19,24 +19,24 @@ Welcome to HiveHaven, your trusted platform for connecting international student
 
 HiveHaven is a platform that connects international students with reliable accommodations across the US. The platform is designed to help students find the best accommodation that suits their needs and preferences. ~~The platform uses machine learning to recommend the best accommodation based on the student's preferences and budget~~. The platform also provides a platform for students to connect with other students and landlords to find the best accommodation.
 
-## Features (Planned)
+## Features
 
-- **Accommodation Search**: Students can search for accommodations based on their preferences and budget.
-- **Accommodation Recommendation**: The platform uses machine learning to recommend the best accommodation based on the student's preferences and budget.
-- **Accommodation Listing**: Landlords can list their accommodations on the platform.
-- **Student Connection**: Students can connect with other students to find the best accommodation.
-- **Landlord Connection**: Landlords can connect with students to find the best accommodation.
-- **Chat**: Students and landlords can chat with each other to discuss the accommodation.
-- **Notifications**: Students and landlords receive notifications for new messages and accommodation recommendations.
-- **Reviews**: Students and landlords can leave reviews for each other.
-- **Ratings**: Students and landlords can rate each other.
-- **Payments**: Students can make payments for accommodations through the platform.
-- **Booking**: Students can book accommodations through the platform.
-- **Profile**: Students and landlords can create profiles on the platform.
-- **Verification**: Students and landlords can verify their profiles.
-- **Support**: Students and landlords can contact support for any issues.
-- **Feedback**: Students and landlords can provide feedback on the platform.
-- **Privacy**: The platform ensures the privacy of students and landlords.
+- [ ] **Accommodation Search**: Students can search for accommodations based on their preferences and budget.
+- [ ] **Accommodation Recommendation**: The platform uses machine learning to recommend the best accommodation based on the student's preferences and budget.
+- [ ] **Accommodation Listing**: Landlords can list their accommodations on the platform.
+- [ ] **Student Connection**: Students can connect with other students to find the best accommodation.
+- [ ] **Landlord Connection**: Landlords can connect with students to find the best accommodation.
+- [ ] **Chat**: Students and landlords can chat with each other to discuss the accommodation.
+- [ ] **Notifications**: Students and landlords receive notifications for new messages and accommodation recommendations.
+- [ ] **Reviews**: Students and landlords can leave reviews for each other.
+- [ ] **Ratings**: Students and landlords can rate each other.
+- [ ] **Payments**: Students can make payments for accommodations through the platform.
+- [ ] **Booking**: Students can book accommodations through the platform.
+- [ ] **Profile**: Students and landlords can create profiles on the platform.
+- [ ] **Verification**: Students and landlords can verify their profiles.
+- [ ] **Support**: Students and landlords can contact support for any issues.
+- [ ] **Feedback**: Students and landlords can provide feedback on the platform.
+- [ ] **Privacy**: The platform ensures the privacy of students and landlords.
 
 ## Technologies Used
 
