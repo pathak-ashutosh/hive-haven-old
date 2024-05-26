@@ -23,7 +23,7 @@
 import React, { useState } from 'react';
 import axios from '../axiosConfig';
 import { motion } from 'framer-motion';
-import { PrimarySubmitButton } from '../components/Buttons';
+import PrimarySubmitButton from '../components/buttons/PrimarySubmitButton';
 
 const Contact = () => {
   const [name, setName] = useState('');
@@ -49,7 +49,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-8 py-16 bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen px-8 py-16">
       <motion.div
         className="max-w-3xl w-full"
         initial={{ opacity: 0, y: 50 }}
@@ -57,11 +57,11 @@ const Contact = () => {
         transition={{ duration: 1, ease: "anticipate" }}
       >
         <div className='flex flex-col justify-center items-center'>
-          <h1 className="text-3xl font-medium mb-4 text-center">Contact <span className='text-yellow-500'>Us</span></h1>
+          <h1 className="text-3xl font-medium my-4 text-center">Contact <span className='text-yellow-500'>Us</span></h1>
           <p className='text-5xl font-semibold mb-4 tracking-tight'>We're here to help</p>
           <p className='w-4/5 text-center mb-8'>Get in touch with our sales and support teams for product questions, integration support, demos and more.</p>
         </div>
-        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg border shadow-md">
           <div className="relative mb-4">
             <input
               id="name"

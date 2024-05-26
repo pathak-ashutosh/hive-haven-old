@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { PrimaryButton, SecondaryButton } from "./Buttons";
+import PrimaryButton from "./buttons/PrimaryButton";
+import SecondaryButton from "./buttons/SecondaryButton";
 import { useState, useEffect, useRef } from "react";
 import { IoMenu, IoClose } from "react-icons/io5";
 

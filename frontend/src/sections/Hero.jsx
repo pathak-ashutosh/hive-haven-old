@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import { IoBookOutline } from "react-icons/io5";
-import { PrimaryButton, SecondaryButton } from "../components/Buttons";
+import PrimaryButton from "../components/buttons/PrimaryButton";
+import SecondaryButton from "../components/buttons/SecondaryButton";
 import { motion } from "framer-motion";
 
 const Hero = () => {

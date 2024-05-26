@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from '../axiosConfig';
-import { PrimarySubmitButton, SecondaryButton } from "../components/Buttons";
+import PrimarySubmitButton from '../components/buttons/PrimarySubmitButton';
+import SecondaryButton from '../components/buttons/SecondaryButton';
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { IoEye, IoEyeOff } from "react-icons/io5";

@@ -23,7 +23,7 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-8 py-16 bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen px-8 py-16">
       <motion.div
         className="max-w-3xl text-center"
         initial={{ opacity: 0, y: 50 }}
@@ -38,12 +38,14 @@ const About = () => {
         <p className="text-lg mb-4">
           Welcome to <span className="text-yellow-500">hiveHaven</span>, your trusted platform for connecting international students with reliable accommodations across the US.
         </p>
-        <p className="text-lg mb-4">
-          Our mission is to provide a seamless and secure experience for students seeking a home away from home. We understand the challenges of finding the right place to live, especially in a new country, and we are here to make that process easier for you.
-        </p>
-        <p className="text-lg mb-4">
-          At <span className="text-yellow-500">hiveHaven</span>, we are committed to offering a wide range of verified properties, ensuring that you have access to safe and comfortable living spaces. Our team is dedicated to supporting you every step of the way, from searching for properties to finalizing your lease.
-        </p>
+        <div className='grid sm:grid-cols-2 gap-4'>
+          <p className="text-lg mb-4 p-6 border rounded-xl shadow-sm">
+            Our mission is to provide a seamless and secure experience for students seeking a home away from home. We understand the challenges of finding the right place to live, especially in a new country, and we are here to make that process easier for you.
+          </p>
+          <p className="text-lg mb-4 p-6 border rounded-xl shadow-sm">
+            At <span className="text-yellow-500">hiveHaven</span>, we are committed to offering a wide range of verified properties, ensuring that you have access to safe and comfortable living spaces. Our team is dedicated to supporting you every step of the way, from searching for properties to finalizing your lease.
+          </p>
+        </div>
         <p className="text-lg">
           Thank you for choosing <span className="text-yellow-500">hiveHaven</span>. We look forward to helping you find your perfect home away from home.
         </p>

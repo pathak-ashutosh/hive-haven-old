@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "../axiosConfig";
 import { Link } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
+import { Search } from "../components";
 
 function Properties() {
   const [properties, setProperties] = useState([]);
@@ -19,21 +20,12 @@ function Properties() {
 
   return (
     <div className="relative lg:px-24 pt-14">
-      <h1 className="py-14 font-inter text-3xl text-extrabold">
-        Rental Properties
-      </h1>
-      <span className="flex">
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Search"
-          className="border-b px-2"
-        />
-        <Link className="border-b px-1 pt-1 text-yellow-500">
-          <FiSearch />
-        </Link>
-      </span>
+      <div className="flex py-14 justify-between items-center">
+        <h1 className="px-2 font-inter text-3xl font-extrabold">
+          Properties
+        </h1>
+        <Search />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-8">
         {properties.map((property) => (
           <div className="border my-8 p-4 rounded-3xl" key={property.id}>
