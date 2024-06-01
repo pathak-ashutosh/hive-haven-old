@@ -1,29 +1,40 @@
 import React, { useState } from 'react';
-import axios from '../axiosConfig';
 import PrimarySubmitButton from '../components/buttons/PrimarySubmitButton';
 import SecondaryButton from '../components/buttons/SecondaryButton';
-import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import { supabase } from '../utils/supabase';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [message, setMessage] = useState(null);
+  const [messageType, setMessageType] = useState(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  // Handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    axios.post('/login', { email, password })
-      .then((response) => {
-        console.log('User logged in successfully.');
-        localStorage.setItem('token', response.data.token);
-      })
-      .catch((error) => {
-        console.error('Error logging in:', error);
-        setEmail('');
-        setPassword('');
-      });
+    // Authenticate user with Supabase
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+
+    if (error) {
+      setMessage("Error logging in the user: " + error.message);
+      setMessageType("error");
+    } else {
+      setMessage("User logged in successfully.");
+      setMessageType("success");
+      navigate("/properties");
+    }
+
+    // Clear form fields
+    setEmail("");
+    setPassword("");
   };
 
   // Toggle password visibility
@@ -33,21 +44,19 @@ const Login = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
-      <motion.div className="justify-center items-center flex flex-col"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease: "anticipate", delay: 0.2}}
-      >
+      <div className="justify-center items-center flex flex-col">
         <h1 className="text-3xl font-bold mb-8">Login</h1>
         <p className="text-sm">All fields are required</p>
-      </motion.div>
+      </div>
+
+      {message && (
+        <div className={`mt-4 px-4 py-2 rounded-3xl text-sm ${messageType === "error" ? "bg-red-100 text-red-700" : "bg-green-100 text-green-700"}`}>
+          {message}
+        </div>
+      )}
       
       <form onSubmit={handleSubmit} className="p-8 w-full max-w-md">
-        <motion.div className="relative mb-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "anticipate", delay: 0.2}}
-        >
+        <div className="relative mb-4">
           <input
             id="email"
             type="email"
@@ -63,12 +72,8 @@ const Login = () => {
           >
             Email
           </label>
-        </motion.div>
-        <motion.div className="relative mb-4"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "anticipate", delay: 0.4 }}
-        >
+        </div>
+        <div className="relative mb-4">
           <input
             id="password"
             type={isPasswordVisible ? 'text' : 'password'}
@@ -90,27 +95,19 @@ const Login = () => {
           >
             {isPasswordVisible ? <IoEye size={20} color="gray" /> : <IoEyeOff size={20} color="gray" />}
           </span>
-        </motion.div>
-        <motion.div className="mb-4 flex flex-row justify-between items-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "anticipate", delay: 0.6 }}
-        >
+        </div>
+        <div className="mb-4 flex flex-row justify-between items-center">
           <Link to="/forgot-password" className="text-sm text-pink hover:text-bold pl-2">
             Forgot Password?
           </Link>
-        </motion.div>
+        </div>
 
-        <motion.div className="flex flex-col items-stretch max-md:flex-col gap-3 justify-center"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "anticipate", delay: 0.8 }}
-        >
+        <div className="flex flex-col items-stretch max-md:flex-col gap-3 justify-center">
           <PrimarySubmitButton label="Login" Icon={null} />
           <Link to="/signup" className='flex flex-col items-stretch'>
             <SecondaryButton label="Don't have an account? Sign up" Icon={null} />
           </Link>
-        </motion.div>
+        </div>
       </form>
     </div>
   );

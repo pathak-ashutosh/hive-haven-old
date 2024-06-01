@@ -4,9 +4,10 @@ import PrimaryButton from "./buttons/PrimaryButton";
 import PrimarySubmitButton from "./buttons/PrimarySubmitButton";
 import SecondaryButton from "./buttons/SecondaryButton";
 import SecondarySubmitButton from "./buttons/SecondarySubmitButton";
-import SearchProperties from "./Search";
+import SearchProperties from "./SearchProperties";
 import Loading from "./Loading";
 import Dropdown from "./Dropdown";
+import Pagination from "./Pagination";
 
 export {
   Nav,
@@ -17,5 +18,6 @@ export {
   SecondarySubmitButton,
   SearchProperties,
   Loading,
-  Dropdown
+  Dropdown,
+  Pagination,
 };
