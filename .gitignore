@@ -12,9 +12,6 @@ jspm_packages/
 
 # IDE files
 .vscode/
-.idea/
-*.sublime-project
-*.sublime-workspace
 
 # Logs and databases
 *.log
@@ -27,7 +24,7 @@ Thumbs.db
 
 # Environment files
 .env
-.env.development
+.env.local
 .env.test
 .env.production
 frontend/package-lock.json
