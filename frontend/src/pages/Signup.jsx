@@ -32,13 +32,13 @@ const Signup = () => {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
-      // options: { 
-      //   captchaToken,
-      // }
+      options: { 
+        captchaToken,
+      }
     });
     
     // Reset captcha after submission to prevent re-use of the token
-    // captcha.current.resetCaptcha();
+    captcha.current.resetCaptcha();
 
     if (authError) {
       setMessage("Error signing up the user: " + authError.message);
@@ -169,7 +169,7 @@ const Signup = () => {
         </div>
 
         <div className="flex mt-4 justify-center">
-          {/* <HCaptcha ref={captcha} sitekey={siteKey} onVerify={setCaptchaToken} /> */}
+          <HCaptcha ref={captcha} sitekey={siteKey} onVerify={setCaptchaToken} />
         </div>
 
         <div className="mt-4 flex flex-row max-md:flex-col gap-4 justify-center items-center"

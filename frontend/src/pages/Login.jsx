@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PrimarySubmitButton from '../components/buttons/PrimarySubmitButton';
 import SecondaryButton from '../components/buttons/SecondaryButton';
 import { Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from "react-icons/io5";
 import { supabase } from '../utils/supabase';
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -11,7 +12,11 @@ const Login = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
   const navigate = useNavigate();
+  const captcha = useRef(null);
+
+  const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY;
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -21,6 +26,9 @@ const Login = () => {
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
+      options: { 
+        captchaToken,
+      }
     });
 
     if (error) {
@@ -102,7 +110,11 @@ const Login = () => {
           </Link>
         </div>
 
-        <div className="flex flex-col items-stretch max-md:flex-col gap-3 justify-center">
+        <div className="flex mt-4 justify-center">
+          <HCaptcha ref={captcha} sitekey={siteKey} onVerify={setCaptchaToken} />
+        </div>
+
+        <div className="mt-4 flex flex-col items-stretch max-md:flex-col gap-3 justify-center">
           <PrimarySubmitButton label="Login" Icon={null} />
           <Link to="/signup" className='flex flex-col items-stretch'>
             <SecondaryButton label="Don't have an account? Sign up" Icon={null} />
