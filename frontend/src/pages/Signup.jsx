@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { supabase } from "../utils/supabase";
 import PrimarySubmitButton from "../components/buttons/PrimarySubmitButton";
 import SecondaryButton from "../components/buttons/SecondaryButton";
 import { Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from "react-icons/io5";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 
 const Signup = () => {
   // State variables for form fields
@@ -13,7 +14,11 @@ const Signup = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [message, setMessage] = useState(null);
   const [messageType, setMessageType] = useState(null);
+  const [captchaToken, setCaptchaToken] = useState(null);
   const navigate = useNavigate();
+  const captcha = useRef(null);
+
+  const siteKey = process.env.REACT_APP_HCAPTCHA_SITE_KEY;
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -27,7 +32,13 @@ const Signup = () => {
     const { data: authData, error: authError } = await supabase.auth.signUp({
       email,
       password,
+      // options: { 
+      //   captchaToken,
+      // }
     });
+    
+    // Reset captcha after submission to prevent re-use of the token
+    // captcha.current.resetCaptcha();
 
     if (authError) {
       setMessage("Error signing up the user: " + authError.message);
@@ -157,10 +168,14 @@ const Signup = () => {
           </div>
         </div>
 
-        <div className="flex flex-row max-md:flex-col gap-2 justify-center items-center"
+        <div className="flex mt-4 justify-center">
+          {/* <HCaptcha ref={captcha} sitekey={siteKey} onVerify={setCaptchaToken} /> */}
+        </div>
+
+        <div className="mt-4 flex flex-row max-md:flex-col gap-4 justify-center items-center"
         >
           <PrimarySubmitButton label="Create Account" Icon={null} />
-          <Link to="/login" className="max-md:mt-2">
+          <Link to="/login">
             <SecondaryButton label="Log In Instead" Icon={null} />
           </Link>
         </div>
