@@ -9,13 +9,13 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="w-full flex flex-col xl:flex-row justify-center gap-10 min-h-screen"
+      className="w-full flex flex-col xl:flex-row justify-center gap-10 min-h-screen py-20"
     >
-      <div className="relative xl:w-2/5 flex flex-col justify-center items-center w-full max-xl:p-8 pt-18 text-center">
+      <div className="relative xl:w-2/5 flex flex-col justify-center items-center w-full max-xl:p-8 text-center">
 
         {/* Deals floating card */}
         <motion.div
-          className="mt-20 md:mt-16 border shadow-md rounded-2xl"
+          className="border shadow-md rounded-2xl"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: "anticipate" }}
