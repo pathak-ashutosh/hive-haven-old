@@ -1,6 +1,6 @@
 import headerLogo from './header-logo.png';
 import bestPlace from './best-place.svg';
 import greenPlantsStaircase from './GreenPlantsStaircase.jpg';
-import whiteWoodenShelfBesideBed from './WhiteWoodenShelfBesideBed.jpg';
+import yellowHouse from './yellow-house.jpg';
 
-export { headerLogo, bestPlace, greenPlantsStaircase, whiteWoodenShelfBesideBed};
+export { headerLogo, bestPlace, greenPlantsStaircase, yellowHouse };

@@ -1,1 +1,0 @@
-// Quotes from satisfied users
