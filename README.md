@@ -2,7 +2,7 @@
 
 Welcome to HiveHaven, your trusted platform for connecting international students with reliable accommodations across the US.
 
-- [HiveHaven](#hivehaven)
+## Table of contents:
   - [Introduction](#introduction)
   - [Features](#features)
   - [Technologies Used](#technologies-used)
@@ -21,9 +21,9 @@ HiveHaven is a platform that connects international students with reliable accom
 
 ## Features
 
-- [ ] **Accommodation Search**: Students can search for accommodations based on their preferences and budget.
+- [x] **Accommodation Search**: Students can search for accommodations based on their preferences and budget.
 - [ ] **Accommodation Recommendation**: The platform uses machine learning to recommend the best accommodation based on the student's preferences and budget.
-- [ ] **Accommodation Listing**: Landlords can list their accommodations on the platform.
+- [x] **Accommodation Listing**: Landlords can list their accommodations on the platform.
 - [ ] **Student Connection**: Students can connect with other students to find the best accommodation.
 - [ ] **Landlord Connection**: Landlords can connect with students to find the best accommodation.
 - [ ] **Chat**: Students and landlords can chat with each other to discuss the accommodation.
